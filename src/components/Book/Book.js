@@ -20,9 +20,17 @@ const Book = () => {
 		checkOut: new Date(),
 	});
 
-	const handleDateChange = (date) => {
-		setSelectedDate(date);
+	const handleCheckInDate = (date) => {
+		const newDates = { ...selectedDate };
+		newDates.checkIn = date;
+		setSelectedDate(newDates);
 	};
+	const handleCheckOutDate = (date) => {
+		const newDates = { ...selectedDate };
+		newDates.checkOut = date;
+		setSelectedDate(newDates);
+	};
+	const handleBooking = () => {};
 
 	return (
 		<div style={{ textAlign: 'center' }}>
@@ -38,12 +46,12 @@ const Book = () => {
 					<KeyboardDatePicker
 						disableToolbar
 						variant='inline'
-						format='MM/dd/yyyy'
+						format='dd/MM/yyyy'
 						margin='normal'
 						id='date-picker-inline'
 						label='Check In Date'
 						value={selectedDate.checkIn}
-						onChange={handleDateChange}
+						onChange={handleCheckInDate}
 						KeyboardButtonProps={{
 							'aria-label': 'change date',
 						}}
@@ -52,14 +60,14 @@ const Book = () => {
 						margin='normal'
 						id='date-picker-dialog'
 						label='Check Out Date'
-						format='MM/dd/yyyy'
+						format='dd/MM/yyyy'
 						value={selectedDate.checkOut}
-						onChange={handleDateChange}
+						onChange={handleCheckOutDate}
 						KeyboardButtonProps={{
 							'aria-label': 'change date',
 						}}
 					/>
-					<KeyboardTimePicker
+					{/* <KeyboardTimePicker
 						margin='normal'
 						id='time-picker'
 						label='Time picker'
@@ -68,9 +76,9 @@ const Book = () => {
 						KeyboardButtonProps={{
 							'aria-label': 'change time',
 						}}
-					/>
+					/> */}
 				</Grid>
-				<Button variant='contained' color='primary'>
+				<Button onClick={handleBooking} variant='contained' color='primary'>
 					Book Now
 				</Button>
 			</MuiPickersUtilsProvider>
